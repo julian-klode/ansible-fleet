@@ -2,6 +2,8 @@
   snap:
     name: spotify
 
-- name: EasyEffects
+- name: Pipewire addons
   package:
-    name: easyeffects
+    name:
+      - easyeffects
+      - pavucontrol
