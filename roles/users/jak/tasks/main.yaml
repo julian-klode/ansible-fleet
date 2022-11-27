@@ -3,3 +3,17 @@
     cmd: git clone https://github.com/julian-klode/dotfiles.git dotfiles &&  GIT_DIR=dotfiles/.git  git stash && GIT_DIR=dotfiles/.git git checkout && mv dotfiles/.git .hgit && rm -r dotfiles
     chdir: /home/jak
     creates: /home/jak/.hgit
+
+- name: Enable systemd-tmpfiles-setup.service
+  systemd:
+    scope: user
+    service: systemd-tmpfiles-setup.service
+    enabled: true
+    state: started
+
+- name: Enable systemd-tmpfiles-clean.timer
+  systemd:
+    scope: user
+    service: systemd-tmpfiles-clean.timer
+    enabled: true
+    state: started
