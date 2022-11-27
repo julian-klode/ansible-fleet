@@ -34,6 +34,9 @@
   package:
     name:
       - vim
+      - vim-airline
+      - fonts-powerline
+      - fonts-hack
 
 - name: Remove nano
   package:
