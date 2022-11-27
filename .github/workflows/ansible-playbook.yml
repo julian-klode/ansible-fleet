@@ -1,0 +1,32 @@
+name: pull-request
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  amd64:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # otherwise we are testing target branch instead of the PR branch (see pull_request_target trigger)
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Install ansible
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
+
+      - name: Deploy to localhost
+        run: |
+          ansible-playbook --become playbook.yml
+
