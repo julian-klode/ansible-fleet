@@ -9,6 +9,7 @@
       - build-essential
       - git
       - mmdebstrap
+      - sqlite3
 
 - name: Bootstrap ansible
   apt:
