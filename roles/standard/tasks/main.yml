@@ -30,6 +30,17 @@
       - moreutils           # This provides lots of cool stuff
       - rename
 
+- name: Install vim
+  package:
+    name:
+      - vim
+
+- name: Remove nano
+  package:
+    name:
+      - nano
+    state: absent
+
 - name: Install gnupg
   package:
     name:
