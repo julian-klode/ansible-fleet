@@ -29,6 +29,7 @@
       - byobu
       - moreutils           # This provides lots of cool stuff
       - rename
+      - ripgrep
 
 - name: Install vim
   package:
