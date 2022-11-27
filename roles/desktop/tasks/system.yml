@@ -14,5 +14,5 @@
 
 - name: Install radeontop
   apt:
-     package: radeontop
+    package: radeontop
   when: "'AuthenticAMD' in ansible_facts.processor"
