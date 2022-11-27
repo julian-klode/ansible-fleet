@@ -29,6 +29,13 @@
       - moreutils           # This provides lots of cool stuff
       - rename
 
+- name: Install gnupg
+  package:
+    name:
+      - gnupg
+      - scdaemon
+      - debian-keyring
+
 - name: Install kernel
   package:
     name:

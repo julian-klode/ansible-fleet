@@ -17,7 +17,9 @@
     - all
     - localhost
   roles:
-    - users/jak
+    - role: users/jak
+      become_user: jak
+      tags: jak
 
 - hosts:
     - localhost

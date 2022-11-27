@@ -1,0 +1,5 @@
+- name: Install dotfiles
+  shell:
+    cmd: git clone https://github.com/julian-klode/dotfiles.git dotfiles &&  GIT_DIR=dotfiles/.git  git stash && GIT_DIR=dotfiles/.git git checkout && mv dotfiles/.git .hgit && rm -r dotfiles
+    chdir: /home/jak
+    creates: /home/jak/.hgit
