@@ -17,6 +17,7 @@
       - htop
       - s-tui
       - stress
+      - lm-sensors
 
 - name: Install terminal tools
   package:
