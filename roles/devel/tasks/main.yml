@@ -6,10 +6,12 @@
 - name: Install essential development tools
   apt:
     package:
+      - autopkgtest
       - build-essential
       - git
       - mmdebstrap
       - sqlite3
+      - ubuntu-dev-tools
 
 - name: Bootstrap ansible
   apt:
