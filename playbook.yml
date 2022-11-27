@@ -21,6 +21,7 @@
       tags: jak
       become: true
       become_user: jak
+      when: "ansible_facts.user_id == 'jak' or ansible_facts.env.get('SUDO_USER', '') == 'jak'"
 
 - hosts:
     - localhost
@@ -31,7 +32,7 @@
       changed_when: metapackages_build.stdout
     - name: Install metapackages
       apt:
-        deb: "{{ lookup('ansible.builtin.fileglob', '/home/jak/ansible-fleet/debs/*.deb') }}"
+        deb: "{{ lookup('ansible.builtin.fileglob', './debs/*.deb') }}"
     - name: Minimize manual packages
       command: apt-mark minimize-manual -y
       register: minimize_manual
