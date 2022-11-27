@@ -8,6 +8,7 @@
     package:
       - autopkgtest
       - build-essential
+      - debhelper
       - git
       - mmdebstrap
       - sqlite3
