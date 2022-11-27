@@ -17,3 +17,10 @@
     service: systemd-tmpfiles-clean.timer
     enabled: true
     state: started
+
+- name: Enable borg@rsyncnet.timer
+  systemd:
+    scope: user
+    service: borg@rsyncnet.timer
+    enabled: true
+    state: started

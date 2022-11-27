@@ -78,3 +78,14 @@
     name:
       - shim-signed
       - efibootmgr
+
+- name: Install /usr/local
+  shell:
+    cmd: git clone https://github.com/julian-klode/usr-local.git usr-local &&  GIT_DIR=usr-local/.git  git stash && GIT_DIR=usr-local/.git git checkout && mv usr-local/.git .git && rm -r usr-local
+    chdir: /usr/local
+    creates: /usr/local/.git
+  tags: usrlocal
+
+- name: Install borg backup
+  package:
+    name: borgbackup
