@@ -76,6 +76,7 @@
       - cryptsetup
       - lvm2
       - xfsprogs
+      - duf
 
 - name: Boot programs
   package:
