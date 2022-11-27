@@ -17,3 +17,11 @@
       - ansible-core
       - ansible-lint
       - ansible-mitogen
+
+- name: Bootstrap qemu
+  apt:
+    package:
+      - qemu-system
+      - qemu-user-static
+      - qemu-efi-aarch64
+      - ovmf
