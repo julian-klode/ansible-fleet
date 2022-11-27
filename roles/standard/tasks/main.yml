@@ -36,6 +36,12 @@
       - scdaemon
       - debian-keyring
 
+- name: Disable ssh-agent
+  ansible.builtin.lineinfile:
+    path: /etc/X11/Xsession.options
+    regexp: 'use-ssh-agent'
+    line: 'no-use-ssh-agent'
+
 - name: Install kernel
   package:
     name:
