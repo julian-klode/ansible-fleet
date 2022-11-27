@@ -15,3 +15,4 @@
     package:
       - ansible-core
       - ansible-lint
+      - ansible-mitogen
