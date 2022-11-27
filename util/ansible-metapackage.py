@@ -32,7 +32,7 @@ def extract_dependencies(path):
                 if not isinstance(packages, list):
                     packages = [packages]
 
-                state = task.get("state", "present")
+                state = task[key].get("state", "present")
                 if state in ["present", "latest"]:
                     if "when" in task:
                         recommends += packages
@@ -102,6 +102,7 @@ def main():
                 print("Architecture: all", file=ctrl)
                 print("Maintainer: Ansible role maintainer <jak+ansible@jak-linux.org>", file=ctrl)
                 print("Section: metapackages", file=ctrl)
+                print("Protected: yes", file=ctrl)
                 print(f"Description: Automatically generated from Ansible role {role}", file=ctrl)
                 print(f"Version:", version, file=ctrl)
                 if depends:

@@ -31,7 +31,7 @@
       changed_when: metapackages_build.stdout
     - name: Install metapackages
       apt:
-        deb: "{{ lookup('ansible.builtin.fileglob', '/home/jak/ansible-laptop/debs/*.deb') }}"
+        deb: "{{ lookup('ansible.builtin.fileglob', '/home/jak/ansible-fleet/debs/*.deb') }}"
     - name: Minimize manual packages
       command: apt-mark minimize-manual -y
       register: minimize_manual
