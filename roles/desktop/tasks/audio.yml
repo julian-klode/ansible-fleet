@@ -1,0 +1,7 @@
+- name: Spotify
+  snap:
+    name: spotify
+
+- name: EasyEffects
+  package:
+    name: easyeffects

@@ -1,0 +1,18 @@
+- name: Ensure systemd.conf.d overrides are possible
+  file:
+    path: /etc/systemd/systemd.conf.d
+    state: directory
+    mode: 0755
+
+- name: Ensure short systemd timeout
+  copy:
+    dest: /etc/systemd/systemd.conf.d/timeouts.conf
+    content: |
+      DefaultTimeoutStopSec=15s
+      DefaultTimeoutAbortSec=15s
+    mode: 0644
+
+- name: Install radeontop
+  apt:
+     package: radeontop
+  when: "'AuthenticAMD' in ansible_facts.processor"

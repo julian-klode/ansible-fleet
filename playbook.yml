@@ -1,0 +1,37 @@
+---
+- hosts:
+    - all
+    - localhost
+  roles:
+    - role: standard
+      tags: standard
+    - role: laptop
+      tags: laptop
+    - role: desktop
+      tags: desktop
+    - role: devel
+      tags: devel
+  become: true
+
+- hosts:
+    - all
+    - localhost
+  roles:
+    - users/jak
+
+- hosts:
+    - localhost
+  tasks:
+    - name: Build metapackages
+      command: python3 ./util/ansible-metapackage.py
+      register: metapackages_build
+      changed_when: metapackages_build.stdout
+    - name: Install metapackages
+      apt:
+        deb: "{{ lookup('ansible.builtin.fileglob', '/home/jak/ansible-laptop/debs/*.deb') }}"
+    - name: Minimize manual packages
+      command: apt-mark minimize-manual -y
+      register: minimize_manual
+      changed_when: "'No changes necessary' not in minimize_manual.stdout"
+  tags: finalize
+  become: true

@@ -1,0 +1,25 @@
+# Desktop environment
+- name: Ensure desktop environment is present
+  apt:
+    name:
+      - ubuntu-desktop
+      - ubuntu-wallpapers
+      - ubuntu-gnome-wallpapers
+      - ubuntu-restricted-addons
+      - vanilla-gnome-default-settings
+      - gnome-tweaks
+      - gnome-shell-extension-manager
+      - language-pack-gnome-en
+      - language-pack-gnome-de
+
+- include: devel.yml
+  tags: devel
+
+- include: internet.yml
+  tags: internet
+
+- include: system.yml
+  tags: system
+
+- include: audio.yml
+  tags: audio

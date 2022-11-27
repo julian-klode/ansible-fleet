@@ -1,0 +1,9 @@
+- name: Install tlp
+  apt:
+     package: tlp
+
+- name: Install libmbim-utils
+  apt:
+     package: libmbim-utils
+  when: "'wwan0' in ansible_facts and ansible_facts.wwan0.module == 'cdc_mbim'"
+  tags: internet

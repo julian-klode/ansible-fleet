@@ -1,0 +1,27 @@
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Configure google-chrome vaapi support
+  copy:
+    dest: /etc/apt/apt.conf.d/99chrome-vaapi
+    content: |
+      Dpkg::Post-Invoke:: "grep  -q Vaapi /opt/google/chrome/google-chrome || sed -i 's#^exec.*HERE.*/chrome.*#\0 --enable-features=VaapiVideoDecoder,WebUIDarkMode --disable-features=UseChromeOSDirectVideoDecoder --force-dark-mode#' /opt/google/chrome/google-chrome";
+    mode: 0644
+
+- name: Install google-chrome
+  apt:
+    name: google-chrome-stable
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  when: "'google-chrome-stable' not in ansible_facts.packages"
+
+- name: Ensure firefox snap is installed
+  snap:
+    name: firefox
+    state: present
+
+- name: XMPP
+  package:
+    name:
+      - dino-im
+  tags: xmpp

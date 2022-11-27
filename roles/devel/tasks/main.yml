@@ -1,0 +1,17 @@
+- name: Install podman
+  apt:
+    package:
+      - podman
+
+- name: Install essential development tools
+  apt:
+    package:
+      - build-essential
+      - git
+      - mmdebstrap
+
+- name: Bootstrap ansible
+  apt:
+    package:
+      - ansible-core
+      - ansible-lint

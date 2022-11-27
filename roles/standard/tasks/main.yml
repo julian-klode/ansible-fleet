@@ -1,0 +1,55 @@
+- name: Configure dpkg force-unsafe-io
+  copy:
+    dest: /etc/dpkg/dpkg.cfg.d/force-unsafe-io
+    content: force-unsafe-io
+    mode: 0644
+
+- name: Install various package management helpers
+  apt:
+    name:
+      - apt-file
+      - aptitude
+      - dctrl-tools
+
+- name: Install various monitoring tools
+  apt:
+    package:
+      - htop
+      - s-tui
+      - stress
+
+- name: Install terminal tools
+  package:
+    name:
+      - ubuntu-minimal
+      - ubuntu-standard
+      - language-pack-en
+      - language-pack-de
+      - byobu
+      - moreutils           # This provides lots of cool stuff
+      - rename
+
+- name: Install kernel
+  package:
+    name:
+      - linux-generic
+  register: linux_generic
+
+- name: Install OEM kernel maybe
+  package:
+    name:
+      - linux-oem-22.04b
+
+- name: Install file system stack
+  package:
+    name:
+      - btrfs-progs
+      - cryptsetup
+      - lvm2
+      - xfsprogs
+
+- name: Boot programs
+  package:
+    name:
+      - shim-signed
+      - efibootmgr

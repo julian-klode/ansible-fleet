@@ -1,0 +1,6 @@
+# Web browsers
+- name: Ensure code snap is installed
+  snap:
+    name: code
+    classic: true
+    state: present
