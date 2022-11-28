@@ -6,6 +6,8 @@
       - ubuntu-wallpapers
       - ubuntu-gnome-wallpapers
       - ubuntu-restricted-addons
+      - fonts-cantarell
+      - dconf-editor
       - vanilla-gnome-default-settings
       - gnome-tweaks
       - gnome-shell-extension-manager
