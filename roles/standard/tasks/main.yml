@@ -64,10 +64,12 @@
       - linux-generic
   register: linux_generic
 
-- name: Install OEM kernel maybe
+- name: Remove  OEM kernel
   package:
     name:
+      - linux-generic-hwe-22.04
       - linux-oem-22.04b
+    state: absent
 
 - name: Install file system stack
   package:
