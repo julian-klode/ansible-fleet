@@ -24,3 +24,18 @@
     service: borg@rsyncnet.timer
     enabled: true
     state: started
+
+- name: Add flathub repository
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+  tags: flatpak
+
+- name: Install portfolio-performance
+  flatpak:
+    name: info.portfolio_performance.PortfolioPerformance
+    state: present
+    method: user
+  tags: flatpak

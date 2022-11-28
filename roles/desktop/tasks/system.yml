@@ -16,3 +16,8 @@
   apt:
     package: radeontop
   when: "'AuthenticAMD' in ansible_facts.processor"
+
+- name: Install flatpak
+  apt:
+    package: flatpak
+  tags: flatpak
