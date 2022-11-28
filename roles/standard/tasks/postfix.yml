@@ -31,3 +31,41 @@
           3463616462616431383264623032636336386462663263663932
     mode: 0600
   notify: postfix reload
+
+- name: Configure postfix apparmor profile
+  copy:
+    dest: /etc/apparmor.d/postfix
+    content: |
+      #include <tunables/global>
+
+      profile postfix /usr/lib/postfix/sbin/* flags=(attach_disconnected) {
+        #include <abstractions/base>
+        #include <abstractions/nameservice>
+        #include <abstractions/openssl>
+        #include <abstractions/ssl_certs>
+
+        capability kill,
+        capability dac_read_search,
+        capability setuid,
+        capability setgid,
+        capability sys_chroot,
+
+        /etc/mailname r,
+        /etc/postfix/** r,
+        /etc/postfix/ r,
+        /var/{lib,spool}/postfix/ rw,
+
+        /usr/{,s}bin/* mrix,
+        /usr/lib/postfix/** mrix,
+        /var/{lib,spool}/postfix/** rwmk,
+        owner /lib/x86_64-linux-gnu/ld-*.so mr,
+
+        /proc/sys/kernel/random/boot_id r,
+
+        signal peer=@{profile_name},
+
+        network unix stream,
+      }
+    mode: 0644
+  notify:
+    - aa-enforce postfix

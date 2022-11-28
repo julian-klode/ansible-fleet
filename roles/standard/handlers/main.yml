@@ -1,2 +1,10 @@
 - name: postfix reload
   command: postfix reload
+
+- name: aa-enforce postfix
+  command: aa-enforce /etc/apparmor.d/postfix
+
+- name: restart postfix
+  systemd:
+    unit: postfix
+    state: restarted
