@@ -104,3 +104,6 @@
 - name: Install borg backup
   package:
     name: borgbackup
+
+- include: postfix.yml
+  tags: postfix

@@ -1,0 +1,33 @@
+- name: Install postfix
+  apt:
+    package: postfix
+
+- name: Configure postfix
+  copy:
+    dest: /etc/postfix/main.cf
+    content: |
+      myhostname = internal.jak-linux.org
+      myorigin = $mydomain
+      inet_interfaces = loopback-only
+      mydestination =
+      smtp_sasl_auth_enable = yes
+      smtp_tls_security_level = encrypt
+      smtp_sasl_tls_security_options = noanonymous
+      relayhost = [jak-linux.org]:submission
+      smtp_sasl_password_maps = texthash:/etc/postfix/smtp_sasl_password
+    mode: 0644
+  notify: postfix reload
+
+- name: Setup postfix relay password
+  copy:
+    dest: /etc/postfix/smtp_sasl_password
+    content: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          34353034353634356363613431333633303832376164663732393135373338646161653139643737
+          3032653465643830333830303765613536356262343865630a613832633664306238633265323637
+          38656561363263333362653930663463613565313063613934363433353031313138343138623130
+          3366663565643730630a326565613136383934653637333338376233333061643466663266373265
+          39373062386263633663353466646637336163646338343530663266613436633465346663613238
+          3463616462616431383264623032636336386462663263663932
+    mode: 0600
+  notify: postfix reload
