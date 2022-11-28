@@ -108,7 +108,7 @@ def main():
                 if depends:
                     print("Depends:", ", ".join(sorted(set(depends))), file=ctrl)
                 if recommends:
-                    print("Recommends:", ", ".join(sorted(set(recommends))), file=ctrl)
+                    print("Suggests:", ", ".join(sorted(set(recommends))), file=ctrl)
                 if conflicts:
                     print("Conflicts:", ", ".join(sorted(set(conflicts))), file=ctrl)
                 print()
