@@ -31,6 +31,13 @@
       - rename
       - ripgrep
 
+- name: Communication tools
+  package:
+    name:
+      - neomutt
+      - notmuch
+      - lieer
+
 - name: Install vim
   package:
     name:
