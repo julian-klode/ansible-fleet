@@ -119,7 +119,6 @@ def main():
                     file=ctrl,
                 )
                 print("Section: metapackages", file=ctrl)
-                print("Protected: yes", file=ctrl)
                 print(
                     f"Description: Automatically generated from Ansible role {role}",
                     file=ctrl,
