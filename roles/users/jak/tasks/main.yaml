@@ -44,3 +44,8 @@
   dconf:
     key: /org/gnome/desktop/input-sources/xkb-options
     value: "['caps:super', 'lv3:rwin_switch', 'lv3:ralt_switch']"
+
+- name: Configure keyboard layouts
+  dconf:
+    key: /org/gnome/desktop/input-sources/sources
+    value: "[('xkb', 'de+nodeadkeys'), ('xkb', 'de'), ('xkb', 'us')]"
