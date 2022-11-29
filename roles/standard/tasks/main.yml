@@ -43,6 +43,7 @@
   ansible.builtin.package:
     name:
       - iftop
+      - curl
 
 - name: Install vim
   package:
