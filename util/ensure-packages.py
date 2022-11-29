@@ -5,8 +5,8 @@ import sys
 apt_pkg.init()
 
 
-cache=apt_pkg.Cache()
-depcache=apt_pkg.DepCache(cache)
+cache = apt_pkg.Cache()
+depcache = apt_pkg.DepCache(cache)
 manuals = set()
 installed = set()
 for pkg in cache.packages:
@@ -20,8 +20,8 @@ for pkg in cache.packages:
 apt_pkg.config["Dir::State::Status"] = "/dev/null"
 apt_pkg.init_system()
 
-cache=apt_pkg.Cache()
-depcache=apt_pkg.DepCache(cache)
+cache = apt_pkg.Cache()
+depcache = apt_pkg.DepCache(cache)
 for pkg in cache.packages:
     if pkg.essential and pkg.architecture == apt_pkg.config["APT::Architecture"]:
         depcache.mark_install(pkg, False)
@@ -32,7 +32,13 @@ for pkg in cache.packages:
 
 if depcache.broken_count != 0:
     print(f"{depcache.broken_count} broken packages")
-    print("\n".join(pkg.get_fullname(True) for pkg in cache.packages if depcache.is_inst_broken(pkg)))
+    print(
+        "\n".join(
+            pkg.get_fullname(True)
+            for pkg in cache.packages
+            if depcache.is_inst_broken(pkg)
+        )
+    )
     sys.exit(1)
 
 print(manuals)
@@ -50,7 +56,13 @@ for pkgname in sorted(manuals):
 
 if depcache.broken_count != 0:
     print(f"{depcache.broken_count} broken packages")
-    print("\n".join(pkg.get_fullname(True) for pkg in cache.packages if depcache.is_inst_broken(pkg)))
+    print(
+        "\n".join(
+            pkg.get_fullname(True)
+            for pkg in cache.packages
+            if depcache.is_inst_broken(pkg)
+        )
+    )
     sys.exit(1)
 
 

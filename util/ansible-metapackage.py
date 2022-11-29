@@ -6,14 +6,14 @@ import datetime
 import tempfile
 import subprocess
 import sys
-import typing
 
 
 class Loader(yaml.SafeLoader):
     def vault(self, node):
         return self.construct_scalar(node)
 
-Loader.add_constructor('!vault', Loader.vault)
+
+Loader.add_constructor("!vault", Loader.vault)
 
 
 def extract_dependencies(path):
@@ -23,7 +23,12 @@ def extract_dependencies(path):
 
         for task in tasks:
 
-            for key in "apt", "package", "ansible.builtin.apt", "ansible.builtin.package":
+            for key in (
+                "apt",
+                "package",
+                "ansible.builtin.apt",
+                "ansible.builtin.package",
+            ):
                 if key not in task:
                     continue
 
@@ -50,7 +55,6 @@ def extract_dependencies(path):
                 elif state in ["absent"]:
                     conflicts += packages
 
-
                 break
 
     return depends, recommends, conflicts
@@ -72,7 +76,7 @@ def main():
 
         roles.append(role)
 
-    stat = os.stat(f"util/ansible-metapackage.py")
+    stat = os.stat("util/ansible-metapackage.py")
     mtime = max(mtime, stat.st_mtime)
 
     version = datetime.datetime.fromtimestamp(mtime).strftime("%Y.%m.%d.%H%M.%S")
@@ -83,7 +87,6 @@ def main():
             break
     else:
         sys.exit(0)
-
 
     try:
         for deb in os.listdir("debs"):
@@ -101,7 +104,9 @@ def main():
             except FileNotFoundError:
                 continue
             for tasks in dirents:
-                new_depends, new_recommends, new_conflicts = extract_dependencies(f"roles/{role}/tasks/{tasks}")
+                new_depends, new_recommends, new_conflicts = extract_dependencies(
+                    f"roles/{role}/tasks/{tasks}"
+                )
                 depends += new_depends
                 recommends += new_recommends
                 conflicts += new_conflicts
@@ -109,11 +114,17 @@ def main():
             with open(os.path.join(dir, "DEBIAN", "control"), "w") as ctrl:
                 print(f"Package: ansible-role-{role}", file=ctrl)
                 print("Architecture: all", file=ctrl)
-                print("Maintainer: Ansible role maintainer <jak+ansible@jak-linux.org>", file=ctrl)
+                print(
+                    "Maintainer: Ansible role maintainer <jak+ansible@jak-linux.org>",
+                    file=ctrl,
+                )
                 print("Section: metapackages", file=ctrl)
                 print("Protected: yes", file=ctrl)
-                print(f"Description: Automatically generated from Ansible role {role}", file=ctrl)
-                print(f"Version:", version, file=ctrl)
+                print(
+                    f"Description: Automatically generated from Ansible role {role}",
+                    file=ctrl,
+                )
+                print("Version:", version, file=ctrl)
                 if depends:
                     print("Depends:", ", ".join(sorted(set(depends))), file=ctrl)
                 if recommends:
@@ -122,8 +133,10 @@ def main():
                     print("Conflicts:", ", ".join(sorted(set(conflicts))), file=ctrl)
                 print()
 
-            subprocess.check_call(["dpkg-deb", "-b", dir, f"debs/ansible-role-{role}_{version}_all.deb"])
+            subprocess.check_call(
+                ["dpkg-deb", "-b", dir, f"debs/ansible-role-{role}_{version}_all.deb"]
+            )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
