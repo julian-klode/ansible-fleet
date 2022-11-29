@@ -6,15 +6,24 @@ import datetime
 import tempfile
 import subprocess
 import sys
+import typing
+
+
+class Loader(yaml.SafeLoader):
+    def vault(self, node):
+        return self.construct_scalar(node)
+
+Loader.add_constructor('!vault', Loader.vault)
+
 
 def extract_dependencies(path):
     depends, recommends, conflicts = [], [], []
     with open(path) as fobj:
-        tasks = yaml.full_load(fobj)
+        tasks = yaml.load(fobj, Loader=Loader)
 
         for task in tasks:
 
-            for key in "apt", "package":
+            for key in "apt", "package", "ansible.builtin.apt", "ansible.builtin.package":
                 if key not in task:
                     continue
 
