@@ -3,6 +3,13 @@
     package:
       - podman
 
+- name: Install Python development tools
+  apt:
+    package:
+      - black
+      - mypy
+      - flake8
+
 - name: Install essential development tools
   apt:
     package:
