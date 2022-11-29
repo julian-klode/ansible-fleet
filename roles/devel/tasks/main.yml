@@ -21,6 +21,17 @@
       - sqlite3
       - ubuntu-dev-tools
 
+- name: git-ubuntu
+  snap:
+    name:
+      - git-ubuntu
+    classic: true
+
+- name: lp-to-jira
+  snap:
+    name:
+      - lp-to-jira
+
 - name: Bootstrap ansible
   apt:
     package:
