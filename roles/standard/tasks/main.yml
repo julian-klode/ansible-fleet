@@ -39,6 +39,11 @@
       - notmuch
       - lieer
 
+- name: Network tools
+  ansible.builtin.package:
+    name:
+      - iftop
+
 - name: Install vim
   package:
     name:
