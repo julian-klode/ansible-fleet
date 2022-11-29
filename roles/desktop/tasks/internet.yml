@@ -26,3 +26,8 @@
     name:
       - dino-im
   tags: xmpp
+
+- name: Install syncthing
+  snap:
+    name: syncthing
+    state: present
