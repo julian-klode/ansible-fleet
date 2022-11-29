@@ -39,3 +39,8 @@
     state: present
     method: user
   tags: flatpak
+
+- name: Configure right windows key to act as second alt gr, capslock to act as windows key
+  dconf:
+    key: /org/gnome/desktop/input-sources/xkb-options
+    value: "['caps:super', 'lv3:rwin_switch', 'lv3:ralt_switch']"
