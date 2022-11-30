@@ -9,6 +9,9 @@
       - black
       - mypy
       - flake8
+      - python3-numpy
+      - python3-matplotlib
+  tags: python
 
 - name: Install essential development tools
   apt:
