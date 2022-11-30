@@ -11,6 +11,8 @@
       - flake8
       - python3-numpy
       - python3-matplotlib
+      - python3-all-dbg
+      - python3-all-dev
   tags: python
 
 - name: Install essential development tools
