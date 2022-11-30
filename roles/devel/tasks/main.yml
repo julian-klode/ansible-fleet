@@ -20,6 +20,7 @@
     package:
       - autopkgtest
       - build-essential
+      - ccache
       - debhelper
       - git
       - git-buildpackage
