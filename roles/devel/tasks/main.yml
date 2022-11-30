@@ -20,6 +20,7 @@
       - build-essential
       - debhelper
       - git
+      - git-buildpackage
       - mmdebstrap
       - sqlite3
       - ubuntu-dev-tools
