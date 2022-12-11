@@ -13,6 +13,8 @@
       - gnome-shell-extension-manager
       - language-pack-gnome-en
       - language-pack-gnome-de
+      - xclip
+
 
 - include: devel.yml
   tags: devel
