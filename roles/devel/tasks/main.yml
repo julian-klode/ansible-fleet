@@ -22,11 +22,20 @@
       - build-essential
       - ccache
       - debhelper
+      - equivs
       - git
       - git-buildpackage
       - mmdebstrap
       - sqlite3
       - ubuntu-dev-tools
+      - valgrind
+
+- name: APT pre-build and test dependencies
+  apt:
+    package:
+      - clang-format
+      - db-util
+      - stunnel4
       - valgrind
 
 - name: git-ubuntu
@@ -54,3 +63,10 @@
       - qemu-user-static
       - qemu-efi-aarch64
       - ovmf
+
+
+- name: Android
+  apt:
+    package:
+      - adb
+      - scrcpy

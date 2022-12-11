@@ -29,6 +29,7 @@
       - apparmor-utils
       - byobu
       - moreutils           # This provides lots of cool stuff
+      - pv
       - rename
       - ripgrep
 
