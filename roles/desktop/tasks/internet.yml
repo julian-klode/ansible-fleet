@@ -11,7 +11,6 @@
 
 - name: Install google-chrome
   apt:
-    name: google-chrome-stable
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   when: "'google-chrome-stable' not in ansible_facts.packages"
 
