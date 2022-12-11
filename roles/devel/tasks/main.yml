@@ -27,6 +27,7 @@
       - mmdebstrap
       - sqlite3
       - ubuntu-dev-tools
+      - valgrind
 
 - name: git-ubuntu
   snap:
