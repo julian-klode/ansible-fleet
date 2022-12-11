@@ -37,6 +37,7 @@
       - db-util
       - stunnel4
       - valgrind
+      - python3-feedparser
 
 - name: git-ubuntu
   snap:
