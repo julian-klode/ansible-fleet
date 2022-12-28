@@ -25,7 +25,30 @@
       - dino-im
   tags: xmpp
 
-- name: Install syncthing
+- name: Add syncthing key
+  ansible.builtin.get_url:
+    url: https://syncthing.net/release-key.gpg
+    dest: /etc/apt/keyrings/syncthing-archive-keyring.gpg
+    mode: 0644
+
+- name: Add syncthing source
+  copy:
+    dest: /etc/apt/sources.list.d/syncthing.list
+    content: deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable
+    mode: 0644
+  register: syncthing_source
+
+- name: Update apt
+  apt:
+    update_cache: true
+  when: syncthing_source.changed
+
+- name: Install syncthing deb
+  package:
+    name:
+      - syncthing
+
+- name: Remove syncthing snap if installed
   snap:
     name: syncthing
-    state: present
+    state: absent

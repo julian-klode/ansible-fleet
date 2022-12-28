@@ -49,3 +49,31 @@
   dconf:
     key: /org/gnome/desktop/input-sources/sources
     value: "[('xkb', 'de+nodeadkeys'), ('xkb', 'de'), ('xkb', 'us')]"
+
+- name: Move syncthing config
+  command:
+    cmd: mv /home/jak/snap/syncthing/common/syncthing /home/jak/.config/
+    removes: /home/jak/snap/syncthing/common/syncthing
+    creates: /home/jak/.config/syncthing
+  tags: internet
+
+- name: Move syncthing data
+  command:
+    cmd: sh -c "rm /home/jak/Sync || mv /home/jak/snap/syncthing/common/Sync /home/jak/"
+    removes: /home/jak/snap/syncthing/common/Sync
+  tags: internet
+
+- name: Adjust syncthing config
+  ansible.builtin.replace:
+    path: /home/jak/.config/syncthing/config.xml
+    regexp: /home/jak/snap/syncthing/common/Sync
+    replace: /home/jak/Sync
+  tags: internet
+
+- name: Start syncthing
+  systemd:
+    name: syncthing.service
+    enabled: yes
+    state: started
+    scope: user
+  tags: internet
