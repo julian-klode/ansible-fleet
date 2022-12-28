@@ -59,7 +59,7 @@
 
 - name: Move syncthing data
   command:
-    cmd: sh -c "rm /home/jak/Sync || mv /home/jak/snap/syncthing/common/Sync /home/jak/"
+    cmd: sh -c "test -d /home/jak/Sync || rm /home/jak/Sync && mv /home/jak/snap/syncthing/common/Sync /home/jak/"
     removes: /home/jak/snap/syncthing/common/Sync
   tags: internet
 
