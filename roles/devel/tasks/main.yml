@@ -26,6 +26,7 @@
       - git
       - git-buildpackage
       - mmdebstrap
+      - shellcheck
       - sqlite3
       - ubuntu-dev-tools
       - valgrind
