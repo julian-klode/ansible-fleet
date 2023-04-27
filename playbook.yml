@@ -11,6 +11,8 @@
       tags: desktop
     - role: devel
       tags: devel
+    - role: keybase
+      tags: keybase
   become: true
 
 - hosts:
