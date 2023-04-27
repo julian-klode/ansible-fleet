@@ -46,6 +46,7 @@
     name:
       - iftop
       - curl
+      - aria2
 
 - name: Install vim
   package:
