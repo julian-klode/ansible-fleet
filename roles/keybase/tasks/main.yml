@@ -7,4 +7,9 @@
     deb: https://prerelease.keybase.io/keybase_amd64.deb
   when: "'keybase' not in ansible_facts.packages"
 
+- name: Ensure keybase deb is installed
+  apt:
+    name: keybase
+    state: present
+
 

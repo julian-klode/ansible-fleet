@@ -14,6 +14,11 @@
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   when: "'google-chrome-stable' not in ansible_facts.packages"
 
+- name: Ensure google-chrome-stable deb is installed
+  apt:
+    name: google-chrome-stable
+    state: present
+
 - name: Ensure firefox snap is installed
   snap:
     name: firefox
