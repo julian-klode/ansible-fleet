@@ -97,6 +97,7 @@
       - lvm2
       - xfsprogs
       - duf
+      - duperemove
 
 - name: Boot programs
   package:
