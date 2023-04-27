@@ -15,6 +15,10 @@
       - language-pack-gnome-de
       - xclip
 
+- name: Ensure keepassxc is present
+  apt:
+    name:
+      - keepassxc
 
 - include: devel.yml
   tags: devel
