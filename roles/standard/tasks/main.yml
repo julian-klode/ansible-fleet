@@ -47,6 +47,7 @@
       - iftop
       - curl
       - aria2
+      - iperf3
 
 - name: Install vim
   package:
