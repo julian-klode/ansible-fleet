@@ -8,3 +8,8 @@
   systemd:
     unit: postfix
     state: restarted
+
+- name: systemctl force-reload systemd-resolved
+  systemd:
+    unit: systemd-resolved
+    state: restarted
