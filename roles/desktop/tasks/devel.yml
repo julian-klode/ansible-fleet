@@ -1,6 +1,15 @@
 # Web browsers
-- name: Ensure code snap is installed
+- name: Ensure code snap is not installed
   snap:
     name: code
-    classic: true
+    state: absent
+
+- name: Install code
+  apt:
+    deb: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+  when: "'code' not in ansible_facts.packages"
+
+- name: Ensure code deb is installed
+  apt:
+    name: code
     state: present
