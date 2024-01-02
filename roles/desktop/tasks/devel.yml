@@ -1,4 +1,8 @@
 # Web browsers
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
 - name: Ensure code snap is not installed
   snap:
     name: code
