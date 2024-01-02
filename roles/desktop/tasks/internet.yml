@@ -38,10 +38,21 @@
 
 - name: Add syncthing source
   copy:
-    dest: /etc/apt/sources.list.d/syncthing.list
-    content: deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable
+    dest: /etc/apt/sources.list.d/syncthing.sources
+    content: |
+      Types: deb
+      URIs: https://apt.syncthing.net/
+      Suites: syncthing
+      Components: stable
+      Signed-By: /etc/apt/keyrings/syncthing-archive-keyring.gpg
     mode: 0644
   register: syncthing_source
+
+- name: Delete legacy syncthing source
+  file:
+    dest: /etc/apt/sources.list.d/syncthing.list
+    state: absent
+    mode: 0644
 
 - name: Update apt
   apt:
