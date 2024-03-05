@@ -121,8 +121,8 @@
   package:
     name: borgbackup
 
-- include: dns.yml
+- import_tasks: dns.yml
   tags: dns
 
-- include: postfix.yml
+- import_tasks: postfix.yml
   tags: postfix

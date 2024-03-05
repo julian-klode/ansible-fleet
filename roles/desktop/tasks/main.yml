@@ -20,14 +20,14 @@
     name:
       - keepassxc
 
-- include: devel.yml
+- import_tasks: devel.yml
   tags: devel
 
-- include: internet.yml
+- import_tasks: internet.yml
   tags: internet
 
-- include: system.yml
+- import_tasks: system.yml
   tags: system
 
-- include: audio.yml
+- import_tasks: audio.yml
   tags: audio

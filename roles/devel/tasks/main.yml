@@ -56,7 +56,6 @@
     package:
       - ansible-core
       - ansible-lint
-      - ansible-mitogen
 
 - name: Bootstrap qemu
   apt:

@@ -1,6 +1,6 @@
-- name: Install tlp
+- name: Install power-profiles-daemon
   apt:
-     package: tlp
+     package: power-profiles-daemon
 
 - name: Install libmbim-utils
   apt:
