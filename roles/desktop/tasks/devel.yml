@@ -17,3 +17,8 @@
   apt:
     name: code
     state: present
+
+- name: Ensure mattermost-desktop snap is installed
+  snap:
+    name: mattermost-desktop
+    state: present
