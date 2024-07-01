@@ -12,4 +12,9 @@
     name: keybase
     state: present
 
+- name: Mask keybase.mount
+  systemd:
+    name: keybase.mount
+    masked: true
+
 
