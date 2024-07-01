@@ -21,3 +21,11 @@
   apt:
     package: flatpak
   tags: flatpak
+
+- name: Install snap-store
+  snap:
+    name: snap-store
+
+- name: Install firmware-updater
+  snap:
+    name: firmware-updater
