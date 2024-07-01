@@ -24,6 +24,93 @@
     name: firefox
     state: present
 
+- name: Add firefoxpwa.sources
+  copy:
+    dest: /etc/apt/sources.list.d/firefoxpwa.sources
+    content: |
+      Types: deb
+      URIs: https://packagecloud.io/filips/FirefoxPWA/any
+      Suites: any
+      Components: main
+      Signed-By: -----BEGIN PGP PUBLIC KEY BLOCK-----
+       .
+       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
+       cscdznvmahsrmt8+2AAS4Q==
+       =i+EJ
+       -----END PGP PUBLIC KEY BLOCK-----
+    mode: 0644
+  register: firefoxpwa_source
+
+- name: Update apt
+  apt:
+    update_cache: true
+  when: firefoxpwa_source.changed
+
+- name: Install firefoxpwa deb
+  package:
+    name:
+      - firefoxpwa
+
+
 - name: XMPP
   package:
     name:
