@@ -22,3 +22,8 @@
   snap:
     name: mattermost-desktop
     state: present
+
+- name: Ensure element-desktop snap is installed
+  snap:
+    name: element-desktop
+    state: present
