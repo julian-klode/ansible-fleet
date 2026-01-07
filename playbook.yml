@@ -31,7 +31,6 @@
     - name: Build metapackages
       command: python3 ./util/ansible-metapackage.py
       register: metapackages_build
-      changed_when: metapackages_build.stdout
     - name: Install metapackages
       apt:
         deb: "{{ lookup('ansible.builtin.fileglob', './debs/*.deb') }}"
