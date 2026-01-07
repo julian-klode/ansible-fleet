@@ -14,6 +14,8 @@
       - language-pack-gnome-en
       - language-pack-gnome-de
       - xclip
+      - gnome-terminal
+      - alacritty
 
 - name: Ensure keepassxc is present
   apt:
