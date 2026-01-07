@@ -20,6 +20,7 @@
       - lm-sensors
 
 - name: Install terminal tools
+  tags: terminal
   package:
     name:
       - ubuntu-minimal
@@ -27,12 +28,18 @@
       - language-pack-en
       - language-pack-de
       - apparmor-utils
-      - byobu
+      - fish
       - moreutils           # This provides lots of cool stuff
       - p7zip-full
       - pv
       - rename
       - ripgrep
+
+- name: Install multiplexer
+  tags: terminal
+  snap:
+    name: zellij
+    classic: true
 
 - name: Communication tools
   package:
