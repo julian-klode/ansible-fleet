@@ -4,6 +4,21 @@
     content: force-unsafe-io
     mode: 0644
 
+- name: Configure mbsync apparmor profile
+  copy:
+    dest: /etc/apparmor.d/local/mbsync
+    content: |
+      owner @{HOME}/Mail/**/ rw,
+      # Read secrets
+      /usr/bin/dash rix,
+      /usr/bin/cat rix,
+      /usr/bin/gnucat rix,
+      /usr/lib/cargo/bin/coreutils/cat rix,
+      /usr/bin/coreutils rix,
+      /usr/share/locales/** rm,
+      owner @{HOME}/Private/mail.* r,
+    mode: 0644
+
 - name: Install various package management helpers
   apt:
     name:
@@ -47,6 +62,7 @@
       - neomutt
       - notmuch
       - lieer
+      - isync
 
 - name: Network tools
   ansible.builtin.package:
