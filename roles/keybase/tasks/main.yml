@@ -17,4 +17,11 @@
     name: keybase.mount
     masked: true
 
-
+- name: Disable keybase redirector
+  copy:
+    dest: /etc/keybase/config.json
+    content: |
+      {
+        "disable-root-redirector": true
+      }
+    mode: 0644
